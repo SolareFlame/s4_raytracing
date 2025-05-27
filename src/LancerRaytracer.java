@@ -31,7 +31,6 @@ public class LancerRaytracer implements ServiceRaytracing {
     }
 
     public static void main(String args[]) {
-
         // Le fichier de description de la scène si pas fournie
         String fichier_description = "simple.txt";
 
@@ -49,14 +48,33 @@ public class LancerRaytracer implements ServiceRaytracing {
             System.out.println(aide);
         }
 
+        System.out.println("Entrée GO pour lancer le raytracer :");
+        boolean go = false;
 
-        // création d'une fenêtre 
+        while (!go) {
+            try {
+                String c = System.console().readLine();
+                if (c.equalsIgnoreCase("GO")) {
+                    go = true;
+                } else {
+                    System.out.println("Entrée GO pour lancer le raytracer :");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        calculer(fichier_description, largeur, hauteur);
+
+    }
+
+    public static void calculer(String fichier_description, int largeur, int hauteur) {
+        // création d'une fenêtre
         Disp disp = new Disp("Raytracer", largeur, hauteur);
 
-        // Initialisation d'une scène depuis le modèle 
+        // Initialisation d'une scène depuis le modèle
         scene = new Scene(fichier_description, largeur, hauteur);
 
-        // Calcul de l'image de la scène les paramètres : 
+        // Calcul de l'image de la scène les paramètres :
         // - x0 et y0 : correspondant au coin haut à gauche
         // - l et h : hauteur et largeur de l'image calculée
         // Ici on calcule toute l'image (0,0) -> (largeur, hauteur)
@@ -145,3 +163,4 @@ public class LancerRaytracer implements ServiceRaytracing {
         System.out.println("Image calculée en :" + duree + " ms");
     }
 }
+
