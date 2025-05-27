@@ -1,4 +1,8 @@
-public interface ServiceNoeud {
+import raytracer.Image;
+
+import java.rmi.Remote;
+
+public interface ServiceNoeud extends Remote {
 
     /**
      * Calcul de l'image à partir des coordonnées et de la taille spécifiées (et de la scène préalablement enregistrée).
@@ -7,5 +11,5 @@ public interface ServiceNoeud {
      * @param l largeur de la section de l'image à calculer
      * @param h hauteur de la section de l'image à calculer
      */
-    public void compute(int x0, int y0, int l, int h);
+    public Image compute(int x0, int y0, int l, int h);
 }
