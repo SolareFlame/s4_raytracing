@@ -1,28 +1,31 @@
-import java.rmi.NotBoundException;
+package client;
+
+import raytracer.Disp;
+import raytracer.Scene;
+
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class LancerNoeud {
-    public static void main(String[] args) throws RemoteException, NotBoundException {
-
+public class LancerClient {
+    public static void main(String[] args) throws Exception {
         String ip = "localhost";
-        String port = "1099";
+        String port = "1234";
         String[] host = {ip, port};
 
         if (args.length > 0)  ip = args[0];
         if (args.length > 1)  port = args[1];
 
 
-        // Fournir son noeud au service de raytracing
-        Noeud n = new Noeud();
-        ServiceNoeud sn = (ServiceNoeud) UnicastRemoteObject.exportObject(n, 0);
+        Disp disp = new Disp("Image", 512, 512);
+        Client c = new Client(disp);
 
+        ServiceClient sc = (ServiceClient) UnicastRemoteObject.exportObject(c, 0);
         ServiceRaytracing sr = (ServiceRaytracing) getReg(host).lookup("raytracing");
-        sr.enregistrerNoeud(sn);
 
-        n.setScene(sr.getScene());
+        Scene scene = new Scene("simple.txt", 512, 512);
+        sr.calculer(scene, 512, 512, sc);
     }
 
     /**

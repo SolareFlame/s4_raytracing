@@ -1,3 +1,5 @@
+package noeud;
+
 import raytracer.Image;
 import raytracer.Scene;
 

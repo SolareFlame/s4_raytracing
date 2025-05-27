@@ -1,6 +1,8 @@
 package raytracer;
 
-public class Position {
+import java.io.Serializable;
+
+public class Position implements Serializable {
     private double x;
     private double y;
 

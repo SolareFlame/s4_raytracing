@@ -1,6 +1,9 @@
+package noeud;
+
 import raytracer.Image;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 public interface ServiceNoeud extends Remote {
 
@@ -11,5 +14,5 @@ public interface ServiceNoeud extends Remote {
      * @param l largeur de la section de l'image à calculer
      * @param h hauteur de la section de l'image à calculer
      */
-    public Image compute(int x0, int y0, int l, int h);
+    public Image compute(int x0, int y0, int l, int h) throws RemoteException;
 }
