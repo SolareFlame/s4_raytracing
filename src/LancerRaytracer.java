@@ -41,7 +41,7 @@ public class LancerRaytracer {
         // Ici on calcule toute l'image (0,0) -> (largeur, hauteur)
         
         int x0 = 0, y0 = 0;
-        int l = largeur, h = hauteur;
+        int l = largeur/2, h = hauteur/2;
 
         //Théoritquement pour calculer les deux carrés des coins haut gauche bas droite il faut
         // x0 = 0, y0 = 0
@@ -61,6 +61,33 @@ public class LancerRaytracer {
         
         System.out.println("Image calculée en :"+duree+" ms");
         
+        // Affichage de l'image calculée
+        disp.setImage(image, x0, y0);
+
+        // test split
+        x0 = largeur/2;
+        y0 = hauteur/2;
+        l = largeur/2;
+        h = hauteur/2;
+
+        //Théoritquement pour calculer les deux carrés des coins haut gauche bas droite il faut
+        // x0 = 0, y0 = 0
+        // l = largeur/2, h = hauteur/2
+
+        // x0 = largeur/2, y0 = hauteur/2
+        // l = largeur/2, h = hauteur/2
+
+        // Chronométrage du temps de calcul
+        debut = Instant.now();
+        System.out.println("Calcul de l'image :\n - Coordonnées : "+x0+","+y0
+                +"\n - Taille "+ largeur + "x" + hauteur);
+        image = scene.compute(x0, y0, l, h);
+        fin = Instant.now();
+
+         duree = Duration.between(debut, fin).toMillis();
+
+        System.out.println("Image calculée en :"+duree+" ms");
+
         // Affichage de l'image calculée
         disp.setImage(image, x0, y0);
     }	
