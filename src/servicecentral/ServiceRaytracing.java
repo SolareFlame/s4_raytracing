@@ -15,12 +15,6 @@ public interface ServiceRaytracing extends Remote {
      */
     public void enregistrerNoeud(ServiceNoeud noeud) throws RemoteException;
 
-    /**
-     * Récupère la scène à partir de laquelle le raytracing va être effectué.
-     */
-    public Scene getScene() throws RemoteException;
-
-
     //METHODE CLIENT
     public void calculer(Scene scene, int largeur, int hauteur, ServiceClient client) throws RemoteException;
 }

@@ -2,6 +2,7 @@ package client;
 
 import raytracer.Disp;
 import raytracer.Scene;
+import servicecentral.ServiceRaytracing;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;

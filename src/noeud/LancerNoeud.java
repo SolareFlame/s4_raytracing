@@ -25,8 +25,6 @@ public class LancerNoeud {
 
         ServiceRaytracing sr = (ServiceRaytracing) getReg(host).lookup("raytracing");
         sr.enregistrerNoeud(sn);
-
-        n.setScene(sr.getScene());
     }
 
     /**
